@@ -1,4 +1,3 @@
-# Stage 1: Build frontend
 FROM node:20-slim AS frontend-build
 WORKDIR /frontend
 COPY stackera-frontend/package*.json ./
@@ -6,7 +5,6 @@ RUN npm ci
 COPY stackera-frontend/ ./
 RUN npm run build
 
-# Stage 2: Python backend + static files
 FROM python:3.11-slim
 WORKDIR /app
 
@@ -21,10 +19,9 @@ COPY config.py .
 COPY database.py .
 COPY rate_limiter.py .
 COPY metrics.py .
-COPY .env .
+# .env is provided via environment variables in production
 COPY routes/ routes/
 
-# Copy built frontend into static/
 COPY --from=frontend-build /frontend/dist ./static/
 
 EXPOSE 8000
