@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Binance Configuration
-BINANCE_WS_URL = os.getenv("BINANCE_WS_URL", "wss://stream.binance.com:9443/ws")
+BINANCE_WS_URL = os.getenv("BINANCE_WS_URL", "wss://data-stream.binance.vision/ws")
 CRYPTO_PAIRS = os.getenv("CRYPTO_PAIRS", "btcusdt,ethusdt,bnbusdt").split(",")
 
 # Server Configuration
