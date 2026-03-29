@@ -5,7 +5,8 @@ import { PriceChart } from "./components/PriceChart";
 import { MetricsPanel } from "./components/MetricsPanel";
 import { ConnectionStatus } from "./components/ConnectionStatus";
 
-const WS_URL = `${window.location.protocol === "https:" ? "wss" : "ws"}://${window.location.host}/ws`;
+const WS_URL = import.meta.env.VITE_WS_URL ||
+  `${window.location.protocol === "https:" ? "wss" : "ws"}://${window.location.host}/ws`;
 
 const SYMBOLS = ["BTCUSDT", "ETHUSDT", "BNBUSDT"];
 
